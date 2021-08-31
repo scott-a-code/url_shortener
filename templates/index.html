@@ -9,12 +9,20 @@
             <th>shortened URL</th>
             <th>Actions</th>
         </tr>
+        {% for url in urls %}
         <tr>
-            <td></td>
-            <td></td>
+            <td>{{ url.full_URL }}</td>
+            <td>{{ url.short_URL }}</td>
             <td>
                 <a href="/delete/{{url.id}}">Delete</a>
             </td>
         </tr>
+        {% endfor %}
     </table>
+    <div="form">
+        <form action='/' method="POST">
+            <input type="text" name="content" id="content" />
+            <input type="submit" value="Add URL" />
+        </form>
+    </div>
 {% endblock %}

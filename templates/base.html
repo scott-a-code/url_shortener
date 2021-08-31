@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <title>Sho-URL</title>
+    {% block head %} {% blockend %}
 </head>
 <body>
-    {% block body %} {% endblock %}
+    {% block body %} {% blockend %}
     <input type="url" id="user_input"> 
     <button onclick="shorturl()">Short The URL</button> 
     <script src="main.py"></script>
