@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block head %} {% endblock %} {% block body %}
+<div class="content">
+    <h1>Sho-URL</h1>
+  <h2 >Enter URL to shorten below</h1>
+  {% if urls|length <1 %}
+  <h4>There are no URLs to view. Create one below!</h4>
+  {% else %}
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Input URL</th>
+        <th>Shortened URL</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    {% for url in urls %}
+    <tbody>
+      <tr>
+        <td>{{ url.full_URL }}</td>
+        <td>{{ url.short_URL }}</td>
+        <td>
+          <a href="/delete/{{url.id}}">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+  {% endif %}
+  <div>
+    <form action="/" method="POST" class="form">
+      <input type="text" name="content" id="content" />
+      <input type="submit" value="Add URL" />
+    </form>
+  </div>
+  {% endblock %}
+</div>

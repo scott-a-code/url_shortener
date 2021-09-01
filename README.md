@@ -20,13 +20,11 @@
 - HTML / CSS
 - JSX
 
-### Development
-- pipenv 
-- pytest
-
 ## Changelog
 - added a readMe
-- xxx
+- Get form submitting and appending to page.
+- Get data from form submission and get it to shorten the url.
+- Get those links to append to the page.
 
 ## Bugs
-- xxx
+- Can't post a submission if not a url. (Not sure if a bad thing)
