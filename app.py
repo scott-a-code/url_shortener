@@ -24,7 +24,6 @@ class DbModel(db.Model):
 def home():
     if request.method == 'POST':
         url_content = request.form['content']
-        new_url = DbModel(full_URL=url_content)
 
         linkRequest = {
         "destination": url_content 
@@ -42,31 +41,17 @@ def home():
 
         if (r.status_code == requests.codes.ok):
             link = r.json()
-            print(link)
             print("Long URL was %s, short URL is %s" % (link["destination"], link["shortUrl"]))
             anotherVariable = link["shortUrl"]
-            print(anotherVariable)
-            shorty_url = DbModel(short_URL=anotherVariable)
-            # dataset1 = (new_url, shorty_url)
-            # dataset2 = (DbModel(full_URL=url_content), DbModel(short_URL=anotherVariable))
-            # dataset3 = (DbModel(short_URL=anotherVariable), DbModel(full_URL=url_content))
+            dataset4 = (DbModel(full_URL=url_content, short_URL=anotherVariable))
         else:
             print('Sorry there has been the following http error: ' + {{r.status_code}})
 
         try:
-            print('issue 1')
-            # db.session.add(dataset1)
-            # db.session.add(dataset2)
-            # db.session.add(dataset3)
-            db.session.add(new_url, shorty_url)
-            print('issue 2')
-            # db.session.add(shorty_url)
-            print('issue 3')
+            db.session.add(dataset4)
             db.session.commit()
-            print('issue 4')
             return redirect('/')
         except:
-            # print(error.)
             return 'There was an issue adding you URL to the database'
     else:
         urls = DbModel.query.order_by(DbModel.id).all()
