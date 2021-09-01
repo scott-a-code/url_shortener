@@ -12,7 +12,7 @@ db = SQLAlchemy(app)
 class DbModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     full_URL = db.Column(db.String(150), nullable=False)
-    # short_URL = db.Column(db.String(100))
+    short_URL = db.Column(db.String(100))
 
     def __repr__(self):
         return '<Shorties %r>' % self.id
@@ -24,18 +24,15 @@ def home():
         new_url = DbModel(full_URL=url_content)
 
         try:
-            print('issue 1')
             db.session.add(new_url)
-            print('issue 2')
             db.session.commit()
-            print('issue 3')
             return redirect('/')
         except:
             return 'There was an issue adding you URL to the database'
-        # return jsonify({'message': 'shortner your URL here!'}), 200
     else:
-        # urls = DbModel.query.order_by(DbModel.id).all()
-        return render_template('index.html' )
+        urls = DbModel.query.order_by(DbModel.id).all()
+        print('done')
+        return render_template('index.html', urls=urls )
 
 @app.route('/delete/<int:id>')
 def delete(id):
