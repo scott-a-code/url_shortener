@@ -59,7 +59,6 @@ def home():
             # db.session.add(dataset2)
             # db.session.add(dataset3)
             db.session.add(new_url, shorty_url)
-            print('issue 2')
             # db.session.add(shorty_url)
             print('issue 3')
             db.session.commit()
